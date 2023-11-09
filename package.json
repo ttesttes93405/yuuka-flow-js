@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    
-  },
+  "type": "module",
+  "scripts": {},
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "author": "Owen Sun",
   "license": "ISC"
 }

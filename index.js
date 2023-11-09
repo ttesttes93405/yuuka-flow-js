@@ -1,7 +1,7 @@
 
 
 
-function createExecutor(flowDocument, activities) {
+export function createExecutor(flowDocument, activities) {
 
     return ({
         execute: async function (state) {
@@ -11,20 +11,20 @@ function createExecutor(flowDocument, activities) {
 
             while (true) {
                 const activity = activities[node.name];
-                const outputPort = await activity(state);
-                if (outputPort === null || outputPort === undefined) {
+                if (activity === undefined)
                     break;
-                }
+
+                const outputPort = await activity(state);
+                if (outputPort === undefined || outputPort === null)
+                    break;
+
                 const nextNodeName = node.outputPorts[outputPort];
                 node = nodes[nextNodeName];
+                if (node === undefined)
+                    break;
             }
 
             return state;
         }
     });
 }
-
-
-export default {
-    createExecutor,
-};

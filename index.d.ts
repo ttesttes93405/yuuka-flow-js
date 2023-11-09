@@ -1,12 +1,12 @@
 
 type TName = string;
 
-type TPortName = string;
+type TPortId = string;
 
 type FlowNode = {
     name: TName;
     outputPorts: {
-        [key: TPortName]: TName;
+        [key: TPortId]: TName;
     },
 };
 
@@ -17,7 +17,7 @@ type FlowDocument = {
     };
 };
 
-type Activity<TState> = (state: TState) => PromiseLike<TPortName>;
+type Activity<TState> = (state: TState) => PromiseLike<TPortId>;
 
 type FlowExecutor<TState> = {
     execute: (state: TState) => PromiseLike<TState>;
